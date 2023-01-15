@@ -1,18 +1,18 @@
-const { SlashCommandAssertions, SlashCommandBuilder } = require("discord.js");
-const { execute } = require("../../events/client/ready");
+const { SlashCommandAssertions, SlashCommandBuilder } = require('discord.js');
+const { execute } = require('../../events/client/ready');
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('Return my ping'),
-    async execute(interaction, client) {
-        const message = await interaction.deferReply({
-            fetchReply: true
-        });
+	data: new SlashCommandBuilder()
+		.setName('ping')
+		.setDescription('Return my ping'),
+	async execute(interaction, client) {
+		const message = await interaction.deferReply({
+			fetchReply: true,
+		});
 
-        const newMessage = `API Latency ${client.ws.ping}\nClient Ping: ${message.createdTimestamp - interaction.createdTimestamp}`
-        await interaction.editReply({
-            content: newMessage
-        });
-    }
-}
+		const newMessage = `API Latency ${client.ws.ping}\nClient Ping: ${message.createdTimestamp - interaction.createdTimestamp}`;
+		await interaction.editReply({
+			content: newMessage,
+		});
+	},
+};
